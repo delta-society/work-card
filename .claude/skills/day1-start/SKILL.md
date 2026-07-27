@@ -1,11 +1,13 @@
 ---
 name: day1-start
-description: 1회차 — Claude Code를 처음 켜고, 감을 잡고, 내 업무 하나를 고른다. "1회차", "Day 1", "시작" 요청에 사용.
+description: 1회차 — Claude Code 구동, 추측과 질문의 차이, 명령어 기초, 내 인수인계서(CLAUDE.md) 일곱 줄, 반복 업무 하나를 레시피(Skill)로. "1회차", "Day 1", "시작" 요청에 사용.
 ---
 
-# Day 1: 시작합니다
+# Day 1: AI로 일하는 방식을 바꾸는 첫 두 시간
 
-이 스킬이 호출되면 아래 **STOP PROTOCOL**을 반드시 따른다.
+발표 자료 Session 1(27장)의 실습 파트(20~27장)를 실행하는 스킬이다.
+
+**오늘 목표 한 줄** — 이 팀이 매주 잃고 있는 시간 하나를, AI가 읽을 수 있는 형태로 옮겨 놓는 것.
 
 ---
 
@@ -56,16 +58,22 @@ Phase A 마지막에는 반드시 아래를 출력하고 STOP한다.
 
 이 문구 뒤에 어떤 도구 호출이나 추가 텍스트도 출력하지 않는다.
 
+### 발표 자료와의 관계
+
+이 스킬은 강사가 화면에 띄우는 발표 자료의 **실습 파트를 그대로 실행**한다. 자료에 없는 내용을 새로 만들지 않고, 자료가 다루지 않은 회차 내용을 미리 당겨오지 않는다.
+
 ---
 
 ## References 파일 맵
 
-| 블록 | 파일 | 주제 |
-|------|------|------|
-| 0 | `references/block0-setup.md` | 터미널 열기 · Claude 켜기 · 첫 대화 |
-| 1 | `references/block1-feel.md` | 추측하는 AI vs 질문하는 AI |
-| 2 | `references/block2-basics.md` | 명령어를 안 외워도 되는 이유 |
-| 3 | `references/block3-pick.md` | 내 업무 하나 고르기 |
+| 블록 | 파일 | 자료 대응 |
+|------|------|----------|
+| 0 | `references/block0-run.md` | 실습 준비(20) + 구동 3줄(21) |
+| 1 | `references/block1-guess.md` | 추측과 질문의 차이(22) |
+| 2 | `references/block2-cli.md` | 명령어를 외우지 않아도 되는 이유(23) |
+| 3 | `references/block3-handover.md` | **내 인수인계서 일곱 줄(24)** |
+| 4 | `references/block4-recipe.md` | **반복 업무를 레시피로(25)** |
+| 5 | `references/block5-wrap.md` | 세 줄로 남기기(26) + 이후(27) |
 
 > 각 파일은 `## EXPLAIN`, `## EXECUTE`, `## CHECK` 섹션으로 되어 있다.
 
@@ -74,27 +82,34 @@ Phase A 마지막에는 반드시 아래를 출력하고 STOP한다.
 ## 오늘 끝나면 손에 남는 것
 
 - 돌아가는 Claude Code 환경
-- `work-cards/` 폴더에 시작된 카드 파일 1개 (업무 이름 + 주기 + 시작 신호 + 재료)
+- `CLAUDE.md` — 내 인수인계서 일곱 줄
+- 반복 업무 하나를 레시피로 만들려다 **어디서 막혔는지**
+- 세 줄 결산
+
+## 오늘의 완료 기준
+
+**레시피가 완성되지 않아도 된다.** 자료 25장이 그렇게 말한다 — "어디서 막히는지 확인하는 것까지가 오늘 몫이고, 막힌 지점이 수요일 세션의 재료다."
 
 ## 오늘 하지 않는 것
 
-- 순서·판단 지점 파고들기 → 2회차
-- 스킬 만들기 → 3회차
+- 좋은 결과의 기준 정하기 → 2회차(`/day2-measure`)
+- 산출물 정리·인계 → 3회차(`/day3-handoff`)
 
-한 번에 하나씩 간다.
+앞의 두 회차 내용을 미리 당겨오지 않는다.
 
 ---
 
 ## 시작
 
-아래 표를 보여주고 AskUserQuestion으로 어디서 시작할지 묻는다.
+아래를 보여주고 AskUserQuestion으로 시작 블록을 묻는다.
 
 | 블록 | 주제 |
 |------|------|
-| 0 | 켜기 — 터미널부터 첫 대화까지 |
-| 1 | 감 잡기 — 추측 vs 질문 |
-| 2 | 기초 — 명령어 안 외워도 되는 이유 |
-| 3 | 내 업무 고르기 |
+| 0 | 구동 — 터미널부터 첫 대화까지 |
+| 1 | 추측과 질문의 차이 |
+| 2 | 명령어를 외우지 않아도 되는 이유 |
+| 3 | 내 인수인계서 일곱 줄 |
+| 4 | 반복 업무를 레시피로 |
 
 ```json
 AskUserQuestion({
@@ -102,14 +117,14 @@ AskUserQuestion({
     "question": "어디서부터 시작할까요?",
     "header": "시작 블록",
     "options": [
-      {"label": "Block 0: 켜기", "description": "터미널·Claude·첫 대화"},
-      {"label": "Block 1: 감 잡기", "description": "추측하는 AI vs 질문하는 AI"},
-      {"label": "Block 2: 기초", "description": "명령어를 안 외워도 되는 이유"},
-      {"label": "Block 3: 내 업무", "description": "카드 시작하기"}
+      {"label": "Block 0: 구동", "description": "터미널·Claude·첫 대화"},
+      {"label": "Block 1: 추측과 질문", "description": "같은 요청 두 번 해보기"},
+      {"label": "Block 2: 명령어 기초", "description": "말로 시키기 · ! 직접 실행"},
+      {"label": "Block 3: 인수인계서", "description": "CLAUDE.md 일곱 줄"}
     ],
     "multiSelect": false
   }]
 })
 ```
 
-선택 후 → 해당 블록의 Phase A부터.
+Block 4는 Block 3을 마친 뒤에만 간다 — 인수인계서 없이 레시피를 만들면 맥락 없는 레시피가 된다.
