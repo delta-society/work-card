@@ -87,3 +87,23 @@ AskUserQuestion({
 
 수요일 내용은 오늘 나온 세 줄로 정합니다. 미리 짜여 있지 않습니다.
 ```
+
+### 시간이 남았다면
+
+Block 6(맥락 연동)이 있다. 선택 블록이므로 여력이 있을 때만 연다.
+
+```json
+AskUserQuestion({
+  "questions": [{
+    "question": "시간이 좀 남았는데, 하나 더 보실까요?",
+    "header": "추가 블록",
+    "options": [
+      {"label": "맥락 연동 보기", "description": "내 업무 자료를 AI에 직접 연결하는 방법"},
+      {"label": "오늘은 여기까지", "description": "다음 회차에서 이어서"}
+    ],
+    "multiSelect": false
+  }]
+})
+```
+
+"오늘은 여기까지"를 고르면 그대로 종료한다. 권하지 않는다.
