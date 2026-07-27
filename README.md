@@ -7,7 +7,7 @@ Claude Code 스킬 하나. 설명을 듣는 게 아니라 **자기 업무 하나
 ## 설치
 
 ```bash
-npx skills add ai-native-camp/work-card --agent claude-code --yes
+npx skills add delta-society/work-card --agent claude-code --yes
 ```
 
 Claude Code 대화창에서:
